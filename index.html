@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shorty's Tool Collection - Conversion, Cryptography, Units, Encoding and more!">
+    <title>shorty//home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script src="assets/js/index.js"></script>
+    <link rel="icon" href="assets/favicon.ico"/>
+</head>
+<body>
+    <div class="contribute">
+        <div class="flex flex-row items-center">
+            <a href="https://github.com/ShortyDev/ShortyDevEU">
+                <span>View on GitHub</span>
+            </a>
+            <a href="https://github.com/ShortyDev/ShortyDevEU">
+                <img src="assets/img/GitHub-Mark-32px.png" width=32 height=32 alt="GitHub Logo">
+            </a>
+        </div>
+    </div>
+    <div class="top-bar flex flex-row">
+        <h1 id="title" class="title flex-initial w-52"><span class="title-small">shorty // </span>home</h1>
+        <div>
+            <label for="search"></label>
+            <input id="search" class="search grow" type="search" placeholder="search here...">
+        </div>
+    </div>
+    <div id="modules" class="module-list flex flex-row"></div>
+    <script>
+        new ModuleBuilder("Snippets", "A platform for code snippets", "Development", "https://snippets.shortydev.eu")
+        new ModuleBuilder("Tools", "A platform for any type of tool", "General", "https://tools.shortydev.eu")
+
+        loadAll(document.getElementById("modules"))
+    </script>
+    <script>
+        const search = document.getElementById("search")
+        const tools = document.getElementById("tools").children
+        const inputHandler = (e) => {
+            let searchTerm = e.target.value.toLowerCase()
+            for (let i = 0; i < tools.length; i++) {
+                tools[i].style.display = "none"
+                if (searchTerm.length === 0) {
+                    tools[i].style.display = ""
+                }
+                searchTerm.split(" ").forEach((term) => {
+                    if (term.length === 0) {
+                        return
+                    }
+                    let title = tools.item(i).firstChild.childNodes.item(1).firstChild.textContent.toLowerCase()
+                    let tag = tools.item(i).firstChild.firstChild.firstChild.textContent.toLowerCase()
+                    console.log(title)
+                    console.log(tag)
+                    title.split(" ").forEach((word) => {
+                        if (word.length === 0) {
+                            tools[i].style.display = ""
+                            return;
+                        }
+                        if (word.includes(term)) {
+                            tools[i].style.display = ""
+                        }
+                    })
+                    tag.split(" ").forEach((word) => {
+                        if (word.length === 0) {
+                            tools[i].style.display = ""
+                            return;
+                        }
+                        if (word.includes(term)) {
+                            tools[i].style.display = ""
+                        }
+                    })
+                })
+            }
+        }
+        search.addEventListener('input', inputHandler)
+        document.getElementById("title").addEventListener('click', () => {
+            search.value = ""
+            inputHandler({target: {value: ""}})
+        })
+    </script>
+</body>
+</html>
