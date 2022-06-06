@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shorty's Tool Collection - Conversion, Cryptography, Units, Encoding and more!">
+    <meta name="description" content="Shorty's home page">
     <title>shorty//home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
@@ -38,38 +38,38 @@
     </script>
     <script>
         const search = document.getElementById("search")
-        const tools = document.getElementById("tools").children
+        const modules = document.getElementById("modules").children
         const inputHandler = (e) => {
             let searchTerm = e.target.value.toLowerCase()
-            for (let i = 0; i < tools.length; i++) {
-                tools[i].style.display = "none"
+            for (let i = 0; i < modules.length; i++) {
+                modules[i].style.display = "none"
                 if (searchTerm.length === 0) {
-                    tools[i].style.display = ""
+                    modules[i].style.display = ""
                 }
                 searchTerm.split(" ").forEach((term) => {
                     if (term.length === 0) {
                         return
                     }
-                    let title = tools.item(i).firstChild.childNodes.item(1).firstChild.textContent.toLowerCase()
-                    let tag = tools.item(i).firstChild.firstChild.firstChild.textContent.toLowerCase()
+                    let title = modules.item(i).firstChild.childNodes.item(1).firstChild.textContent.toLowerCase()
+                    let tag = modules.item(i).firstChild.firstChild.firstChild.textContent.toLowerCase()
                     console.log(title)
                     console.log(tag)
                     title.split(" ").forEach((word) => {
                         if (word.length === 0) {
-                            tools[i].style.display = ""
+                            modules[i].style.display = ""
                             return;
                         }
                         if (word.includes(term)) {
-                            tools[i].style.display = ""
+                            modules[i].style.display = ""
                         }
                     })
                     tag.split(" ").forEach((word) => {
                         if (word.length === 0) {
-                            tools[i].style.display = ""
+                            modules[i].style.display = ""
                             return;
                         }
                         if (word.includes(term)) {
-                            tools[i].style.display = ""
+                            modules[i].style.display = ""
                         }
                     })
                 })
